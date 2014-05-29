@@ -1,0 +1,15 @@
+{
+  "name": "virtual-canvas",
+  "version": "0.0.0",
+  "description": "virtual canvas for mercury",
+  "main": "canvas.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ashnur",
+  "license": "BSD",
+  "dependencies": {
+    "virtual-dom": "0.0.10",
+    "virtual-hyperscript": "^2.3.0"
+  }
+}
