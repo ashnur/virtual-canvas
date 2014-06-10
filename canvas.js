@@ -35,7 +35,11 @@ CanvasWidget.prototype.update = function(prev, elem){
     } else if ( equal(prev.children, this.children) ) {
       this.vnode = prev.vnode
       return
+    } else {
+      this.vnode = prev.vnode
     }
+  } else {
+    throw new Error('should never be hit')
   }
 
   render(this, elem)
