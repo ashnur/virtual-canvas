@@ -52,8 +52,8 @@ console.log('a')
 
   CanvasWidget.prototype.update = function(prev, elem){
 console.log('x')
-    if ( !shouldUpdate(this, previous) ) {
-        this.vnode = previous.vnode
+    if ( !shouldUpdate(this, prev) ) {
+        this.vnode = prev.vnode
         return
     }
     var context = elem.getContext('2d')
@@ -71,7 +71,7 @@ console.log('z')
       }
     })
 
-    var patches = diff(previous.vnode, this.vnode)
+    var patches = diff(prev.vnode, this.vnode)
     patch(domNode, patches)
   }
 
