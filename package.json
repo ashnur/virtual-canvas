@@ -9,6 +9,7 @@
   "author": "ashnur",
   "license": "BSD",
   "dependencies": {
+    "deep-equal": "^0.2.1",
     "virtual-dom": "0.0.10",
     "virtual-hyperscript": "^3.0.0"
   }
