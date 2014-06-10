@@ -32,14 +32,11 @@ CanvasWidget.prototype.update = function(prev, elem){
       var patches = diff(prev.vnode, this.vnode)
 
       patch(elem, patches)
-    } else if ( equal(prev.children, this.children) ) {
+    }
+    if ( equal(prev.children, this.children) ) {
       this.vnode = prev.vnode
       return
-    } else {
-      this.vnode = prev.vnode
     }
-  } else {
-    throw new Error('should never be hit')
   }
 
   render(this, elem)
