@@ -3,6 +3,8 @@ void function(){
   var h = require('virtual-hyperscript')
   var createElement = require('virtual-dom/vdom/create-element.js')
   var VNode = require('virtual-dom/vtree/vnode.js')
+  var patch = require('virtual-dom/patch.js')
+  var diff = require('virtual-dom/diff.js')
   var parseTags = require('./parse-tags.js')
 
   function CanvasWidget(properties, children){
@@ -18,13 +20,46 @@ void function(){
     var tree = h('canvas', this.properties)
     var elem = createElement(tree)
     this.update(null, elem)
+console.log('a')
     return elem
   }
 
+
+  function shouldUpdate(current, previous) {
+
+    var cargs = current.args
+    var pargs = previous.args
+
+    // fast case for args is zero case.
+    if (cargs.length === 0 && pargs.length === 0) {
+      return false
+    }
+
+    if (cargs.length !== pargs.length) {
+      return true
+    }
+
+    var max = cargs.length > pargs.length ? cargs.length : pargs.length
+
+    for (var i = 0; i < max; i++) {
+      if (cargs[i] !== pargs[i]) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   CanvasWidget.prototype.update = function(prev, elem){
+console.log('x')
+    if ( !shouldUpdate(this, previous) ) {
+        this.vnode = previous.vnode
+        return
+    }
     var context = elem.getContext('2d')
-    var width = this.properties.width
-    var height = this.properties.height
+//    var width = this.properties.width
+//    var height = this.properties.height
+console.log('z')
 
     context.clearRect(0, 0, width, height)
 
@@ -35,6 +70,9 @@ void function(){
         shape(context, child)
       }
     })
+
+    var patches = diff(previous.vnode, this.vnode)
+    patch(domNode, patches)
   }
 
   function gradient(ctx, p){

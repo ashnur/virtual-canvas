@@ -10,6 +10,6 @@
   "license": "BSD",
   "dependencies": {
     "virtual-dom": "0.0.10",
-    "virtual-hyperscript": "^2.3.0"
+    "virtual-hyperscript": "^3.0.0"
   }
 }
