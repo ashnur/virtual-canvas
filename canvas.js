@@ -54,6 +54,8 @@ function render(vcanvas, elem){
       rect(context, child)
     } else if ( child.tagName === 'shape' ) {
       shape(context, child)
+    } else if ( child.tagName === 'circle' ) {
+      circle(context, child)
     }
   })
 }
@@ -70,6 +72,28 @@ function style(ctx, p){
   return p.type == 'gradient'        ? gradient(ctx, p.value)
        : p.type == 'color'           ? p.value
        : /* otherwise */               '#000'
+}
+function circle(ctx, node){
+  var p = node.properties
+  ctx.save()
+  ctx.beginPath()
+  ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true)
+  ctx.closePath()
+  node.children.forEach(function(d){
+    ctx.save()
+    var tagName = parseTags(d.tagName, d.properties)
+    if ( tagName == 'fill' ) {
+      ctx.fillStyle = style(ctx, d.properties)
+      ctx.fill()
+    } else if ( tagName = 'stroke' ) {
+      ctx.lineWidth = d.properties.width || 1
+      ctx.strokeStyle = style(ctx, d.properties)
+      var offset = ctx.lineWidth % 2 ? 0.5 : 0
+      ctx.stroke()
+    }
+    ctx.restore()
+  })
+  ctx.restore()
 }
 
 function shape(ctx, node){
