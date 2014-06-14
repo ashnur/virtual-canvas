@@ -1,6 +1,6 @@
 {
   "name": "virtual-canvas",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "virtual canvas for mercury",
   "main": "canvas.js",
   "scripts": {
