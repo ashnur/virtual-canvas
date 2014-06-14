@@ -130,6 +130,9 @@ function rect(ctx, node){
   node.children.forEach(function(d){
     ctx.save()
     var tagName = parseTags(d.tagName, d.properties)
+    if ( d.properties.value.compose ) {
+      ctx.globalCompositeOperation = d.properties.value.compose
+    }
     if ( tagName == 'fill' ) {
       ctx.fillStyle = style(ctx, d.properties)
       ctx.fillRect(x, y, w, h)
