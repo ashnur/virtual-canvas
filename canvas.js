@@ -2,8 +2,8 @@ module.exports = canvas
 
 var equal = require('deep-equal')
 var h = require('virtual-hyperscript')
-var createElement = require('virtual-dom/vdom/create-element.js')
-var VNode = require('virtual-dom/vtree/vnode.js')
+var createElement = require('virtual-dom/create-element.js')
+var VNode = require('vtree/vnode.js')
 var patch = require('virtual-dom/patch.js')
 var diff = require('virtual-dom/diff.js')
 var parseTags = require('./parse-tags.js')
