@@ -102,11 +102,12 @@ function shape(ctx, node){
   var p = node.properties
   ctx.save()
   ctx.beginPath()
-  var first = p.points.shift()
+  var points = p.points
+  var first = points[0]
   ctx.moveTo(first[0], first[1])
-  p.points.forEach(function(point){
-    ctx.lineTo(point[0], point[1])
-  })
+  for ( var i = 1; i < points.length; i ++ ) {
+    ctx.lineTo(points[i][0], points[i][1])
+  }
   ctx.closePath()
   node.children.forEach(function(d){
     ctx.save()
